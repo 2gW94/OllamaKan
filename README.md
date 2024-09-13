@@ -84,5 +84,3 @@ Improved Prompt: Create a misty forest scene with a lake in the foreground, capt
 ## Лицензия
 
 Этот проект распространяется под лицензией MIT.
-
-```
