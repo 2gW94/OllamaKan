@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Генератор изображений</h1>
+        <form id="generate-form">
+            <label for="prompt">Введите описание:</label>
+            <textarea id="prompt" name="prompt" rows="4" placeholder="Введите описание для генерации изображения..."></textarea>
+            <button type="submit">Сгенерировать</button>
+        </form>
+<div id="result">
+            <h2>Результат:</h2>
+            <img id="generated-image" src="" alt="Сгенерированное изображение" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generate-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const prompt = document.getElementById('prompt').value;
+
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `prompt=${encodeURIComponent(prompt)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                const imageElement = document.getElementById('generated-image');
+                imageElement.src = `data:image/png;base64,${data.image}`;
+                imageElement.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
+    </script>
+</body>
+</html>
