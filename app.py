@@ -92,7 +92,7 @@ def generate():
     print(f"Improved Prompt: {improved_prompt}")
 
     # Инициализация API Kandinsky
-    kandinsky_api = Text2ImageAPI('https://api-key.fusionbrain.ai/', "0DD6C5A3BB01B615FD6F0726F0ABB3C8", "6EDCD86F41D100DBB550D735D20A289F")
+    kandinsky_api = Text2ImageAPI('https://api-key.fusionbrain.ai/', "ВАШ_API_KEY", "ВАШ_SECRET_KEY")
     model_id = kandinsky_api.get_model()
 
     # Генерация изображения через Kandinsky
